@@ -1,0 +1,356 @@
+package com.example.sqlworm;
+
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.os.Bundle;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import android.text.Layout;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.AlignmentSpan;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
+import android.view.KeyEvent;
+
+import org.w3c.dom.Text;
+
+public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
+    EditText editTextName;
+    Button btnClickHere;
+    TextView textName;
+    boolean jib = false;
+
+
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        editTextName = (EditText)findViewById(R.id.input);
+        btnClickHere = (Button)findViewById(R.id.submit);
+        textName = (TextView)findViewById(R.id.textname);
+
+
+
+
+        editTextName.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_UP) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER )) {
+                    // Perform action on key press
+                    String mynewname = editTextName.getText().toString();
+                    String postcoderead;
+                    String streetnameread = "";
+                    String roundread = "";
+
+                    SQLiteDatabase mydatabase = getBaseContext().openOrCreateDatabase("mydatabase5.db",MODE_PRIVATE, null);
+                    String mystring1 = "DROP TABLE IF EXISTS rmtable;";
+                    Log.d(TAG, "onCreate: mystring1 is " + mystring1);
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "CREATE TABLE IF NOT EXISTS rmtable(postcode TEXT, street TEXT, round TEXT);";
+                    Log.d(TAG, "onCreate: mystring1 is " + mystring1);
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165AA','Thornwell Road', 'T1');";
+                    Log.d(TAG, "onCreate: mystring1 is " + mystring1);
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165AB', 'Mathern Way','T15');";
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165AD','Cromwell Road', 'T15');";
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165AE', 'St. Ewans Road','T15');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165AG', 'Channel View','T15');"  ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165AH', 'Channel View','T15');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165AJ', 'Channel View','T15');";
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165AL', 'Queens Road', 'T15');";
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165AN', 'Queens Road','T15');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165AP', 'Brunel Road','T15');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165AQ', 'Striguil Road','T15');";
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165AR','Burnt Barn Road', 'T1');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165AS', 'Bulwark Road','T1');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165AU', 'Meadow Walk','T12');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES('NP165AW', 'Mounton Road Meadow Lane', 'T12');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES('NP165AX','River View',  'T18');";
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165AY','Tempest Drive', 'T12');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165AZ','Penterry Park', 'T12');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BA', 'Newport Road','T2');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BB', 'Newport Road','R2');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BD', 'Beech Grove','T2');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BE', 'Beech Grove','T2');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BG', 'High Beech Lane','T2');"  ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BH', 'Larkfield Avenue','T2');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BJ', 'St. Lawrence Road','T2');"  ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BL', 'Mounton Road','T2');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BP', 'Ruffets Close','T12');"  ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BQ', 'High Beech Lane','T2');";
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BR', 'Mounton Road','T2');"  ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BS', 'Mounton Road','T2');"  ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BT', 'Newport Road','T2');"  ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BU', 'Warwick Close','T2');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BW', 'The Paddocks','T2');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BW', 'Fair View','T2');"  ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165BY', 'Regent Way, Mounton Road','T12');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES('NP165BZ', 'School Hill', 'T1');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 ="INSERT INTO rmtable VALUES('NP165DA', 'Albion Square', 'T4');" ;
+                    mydatabase.execSQL(mystring1);
+                    mystring1 = "INSERT INTO rmtable VALUES( 'NP165DB', 'Moor Street','T4');" ;
+                    mydatabase.execSQL(mystring1);
+
+                    Cursor mycursor = mydatabase.rawQuery("SELECT * FROM rmtable;",null);
+                    if(mycursor.moveToFirst()){
+                        do{
+                            String readpostcode = mycursor.getString(0);
+                            String readstreet = mycursor.getString(1);
+                            String readround = mycursor.getString(2);
+                            if(readpostcode.equalsIgnoreCase(mynewname)){
+
+                                postcoderead = readpostcode;
+                                streetnameread = readstreet;
+                                roundread = readround;
+                                jib = true;
+                            }
+
+                        } while(mycursor.moveToNext());
+
+                        if(jib){
+                            textName.setText(streetnameread + "\n"  + roundread);
+                            //Toast.makeText(MainActivity.this, streetnameread + "\n"  + roundread, Toast.LENGTH_LONG).show();
+                            editTextName.setText("");
+                        }else{
+                            Toast.makeText(MainActivity.this, "Nothing Found", Toast.LENGTH_SHORT).show();
+                            textName.setText("");
+                            editTextName.setText("");
+                        }
+                    }
+                    mycursor.close();
+                    mydatabase.close();
+                    getWindow().setSoftInputMode(
+                            WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+                    );
+                }
+                return false;
+            }
+        });
+
+
+
+
+
+        btnClickHere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String mynewname = editTextName.getText().toString();
+                String postcoderead;
+                String streetnameread = "";
+                String roundread = "";
+
+                SQLiteDatabase mydatabase = getBaseContext().openOrCreateDatabase("mydatabase5.db",MODE_PRIVATE, null);
+                String mystring1 = "DROP TABLE IF EXISTS rmtable;";
+                Log.d(TAG, "onCreate: mystring1 is " + mystring1);
+                mydatabase.execSQL(mystring1);
+                mystring1 = "CREATE TABLE IF NOT EXISTS rmtable(postcode TEXT, street TEXT, round TEXT);";
+                Log.d(TAG, "onCreate: mystring1 is " + mystring1);
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165AA','Thornwell Road', 'T1');";
+                Log.d(TAG, "onCreate: mystring1 is " + mystring1);
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165AB', 'Mathern Way','T15');";
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165AD','Cromwell Road', 'T15');";
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165AE', 'St. Ewans Road','T15');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165AG', 'Channel View','T15');"  ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165AH', 'Channel View','T15');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165AJ', 'Channel View','T15');";
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165AL', 'Queens Road', 'T15');";
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165AN', 'Queens Road','T15');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165AP', 'Brunel Road','T15');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165AQ', 'Striguil Road','T15');";
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165AR','Burnt Barn Road', 'T1');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165AS', 'Bulwark Road','T1');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165AU', 'Meadow Walk','T12');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES('NP165AW', 'Mounton Road Meadow Lane', 'T12');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES('NP165AX','River View',  'T18');";
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165AY','Tempest Drive', 'T12');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165AZ','Penterry Park', 'T12');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BA', 'Newport Road','T2');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BB', 'Newport Road','R2');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BD', 'Beech Grove','T2');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BE', 'Beech Grove','T2');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BG', 'High Beech Lane','T2');"  ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BH', 'Larkfield Avenue','T2');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BJ', 'St. Lawrence Road','T2');"  ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BL', 'Mounton Road','T2');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BP', 'Ruffets Close','T12');"  ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BQ', 'High Beech Lane','T2');";
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BR', 'Mounton Road','T2');"  ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BS', 'Mounton Road','T2');"  ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BT', 'Newport Road','T2');"  ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BU', 'Warwick Close','T2');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BW', 'The Paddocks','T2');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BW', 'Fair View','T2');"  ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165BY', 'Regent Way, Mounton Road','T12');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES('NP165BZ', 'School Hill', 'T1');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 ="INSERT INTO rmtable VALUES('NP165DA', 'Albion Square', 'T4');" ;
+                mydatabase.execSQL(mystring1);
+                mystring1 = "INSERT INTO rmtable VALUES( 'NP165DB', 'Moor Street','T4');" ;
+                mydatabase.execSQL(mystring1);
+
+                Cursor mycursor = mydatabase.rawQuery("SELECT * FROM rmtable;",null);
+                if(mycursor.moveToFirst()){
+                    do{
+                        String readpostcode = mycursor.getString(0);
+                        String readstreet = mycursor.getString(1);
+                        String readround = mycursor.getString(2);
+                        if(readpostcode.equalsIgnoreCase(mynewname)){
+
+                            postcoderead = readpostcode;
+                            streetnameread = readstreet;
+                            roundread = readround;
+                            jib = true;
+                        }
+
+                    } while(mycursor.moveToNext());
+
+                    if(jib){
+                        textName.setText(streetnameread + "\n"  + roundread);
+                        //Toast.makeText(MainActivity.this, streetnameread + "\n"  + roundread, Toast.LENGTH_LONG).show();
+                        editTextName.setText("");
+                    }else{
+                        Toast.makeText(MainActivity.this, "Nothing Found", Toast.LENGTH_SHORT).show();
+                        textName.setText("");
+                        editTextName.setText("");
+                    }
+                }
+                mycursor.close();
+                mydatabase.close();
+            }
+        });
+
+
+
+
+
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Get Back To Work", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+}
