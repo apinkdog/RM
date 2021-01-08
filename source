@@ -180,9 +180,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                     mycursor.close();
                     mydatabase.close();
-                    getWindow().setSoftInputMode(
-                            WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
-                    );
+                    jib=false;
+
                 }
                 return false;
             }
@@ -230,6 +229,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 mycursor.close();
                 mydatabase.close();
+                jib=false;
             }
         });
 
